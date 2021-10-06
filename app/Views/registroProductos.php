@@ -48,7 +48,7 @@
                 <div class="col-12 col-md-5">
                     <h3 class="fuente2 fw-bold text-center">Registro de productos</h3>
                     
-                    <form action="" method="POST" class="mt-4">
+                    <form action="<?= site_url('/productos/registro/nuevo') ?>" method="POST" class="mt-4">
                         <div class="mb-3">
                             <label class="form-label">Producto:</label>
                             <input type="text" class="form-control" name="producto">
@@ -72,7 +72,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Tipo de animal:</label>
-                            <select class="form-select" name="tipoAnimal">
+                            <select class="form-select" name="tipo">
                                 <option value="1" selected>Perro</option>
                                 <option value="2">Gato</option>
                                 <option value="3">Ave</option>
