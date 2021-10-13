@@ -19,8 +19,23 @@ class Productos extends BaseController{
         $descripcion=$this->request->getPost("descripcion");
         $tipo=$this->request->getPost("tipo");
 
-        //2. Crear un arreglo asociativo con los datos punto 1
-        $datos=array(
+        //2. Valido que llego
+        if($this->validate('producto')){
+
+            echo("TODO BIEN PAPA");
+
+        }else{
+
+            $mensaje="tienes datos pendientes";
+            return redirect()->to(site_url('/productos/registro'))->with('mensaje',$mensaje);
+
+            //echo("tienes datos pendientes");
+
+        }
+
+
+        //3. Crear un arreglo asociativo con los datos punto 1
+        /*$datos=array(
 
             "producto"=>$producto,
             "foto"=>$foto,
@@ -28,9 +43,9 @@ class Productos extends BaseController{
             "descripcion"=>$descripcion,
             "tipo"=>$tipo
             
-        );
+        );*/
 
-        print_r($datos);
+        //print_r($datos);
 
 
 
