@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+//Se trae (importa) el modelo de datos
+use App\Models\ProductoModelo;
+
 class Productos extends BaseController{
     
     public function index(){
@@ -22,30 +25,40 @@ class Productos extends BaseController{
         //2. Valido que llego
         if($this->validate('producto')){
 
-            echo("TODO BIEN PAPA");
+            //3. se organizan los datos en un array
+            //los naranjados (claves) deben coindicir
+            //con el nombre de las columnas de BD
+            $datos=array(
+                "producto"=>$producto,
+                "foto"=>$foto,
+                "precio"=>$precio,
+                "descripcion"=>$descripcion,
+                "tipo"=>$tipo
+            );
+
+            //4 intentamos grabar los datos en BD
+            try{
+
+                $modelo=new ProductoModelo();
+                $modelo->insert($datos);
+                return redirect()->to(site_url('/productos/registro'))->with('mensaje',"exito agregando el producto");
+
+
+
+            }catch(\Exception $error){
+
+                return redirect()->to(site_url('/productos/registro'))->with('mensaje',$error->getMessage());
+            }
+           
 
         }else{
 
             $mensaje="tienes datos pendientes";
             return redirect()->to(site_url('/productos/registro'))->with('mensaje',$mensaje);
-
-            //echo("tienes datos pendientes");
-
         }
 
 
-        //3. Crear un arreglo asociativo con los datos punto 1
-        /*$datos=array(
-
-            "producto"=>$producto,
-            "foto"=>$foto,
-            "precio"=>$precio,
-            "descripcion"=>$descripcion,
-            "tipo"=>$tipo
-            
-        );*/
-
-        //print_r($datos);
+        
 
 
 
