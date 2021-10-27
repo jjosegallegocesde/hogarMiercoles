@@ -80,4 +80,21 @@ class Productos extends BaseController{
        
     }
 
+    public function eliminar($id){
+
+       try{
+
+        $modelo=new ProductoModelo();
+        $modelo->where('id',$id)->delete();
+        return redirect()->to(site_url('/productos/registro'))->with('mensaje',"exito eliminando el producto");
+
+
+
+
+       }catch(\Exception $error){
+            return redirect()->to(site_url('/productos/registro'))->with('mensaje',$error->getMessage());
+
+        }
+    }
+
 }
