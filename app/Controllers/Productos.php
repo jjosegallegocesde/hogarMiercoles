@@ -11,7 +11,6 @@ class Productos extends BaseController{
         return view('registroProductos');
     }
 
-
     public function registrar(){
        
         //1. Recibo todos los datos enviados desde el formulario (vista)
@@ -63,6 +62,22 @@ class Productos extends BaseController{
 
 
 
+    }
+
+    public function buscar(){
+        try{
+
+            $modelo=new ProductoModelo();
+            $resultado=$modelo->findAll();
+            $productos=array('productos'=>$resultado);
+            return view('listaProductos',$productos);
+
+
+        }catch(\Exception $error){
+            return redirect()->to(site_url('/productos/registro'))->with('mensaje',$error->getMessage());
+
+        }
+       
     }
 
 }
