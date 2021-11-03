@@ -36,6 +36,7 @@ $routes->get('/productos/registro', 'Productos::index');
 $routes->post('/productos/registro/nuevo', 'Productos::registrar');
 $routes->get('/productos/listado', 'Productos::buscar');
 $routes->delete('/productos/eliminar/(:num)', 'Productos::eliminar/$1');
+$routes->post('/productos/editar/(:num)', 'Productos::editar/$1');
 
 /*
  * --------------------------------------------------------------------
